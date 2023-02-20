@@ -1,12 +1,10 @@
-﻿@*@using Microsoft.AspNetCore.Http*@
-
-@inject IHttpContextAccessor Accessor
+﻿@*@inject IHttpContextAccessor Accessor*@
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome @Accessor.HttpContext.Session.GetString("username")</h1>
+    <h1 class="display-4">WELCOME &nbsp; @Accessor.HttpContext.Session.GetString("username").ToUpper()</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core" target="_blank">building Web apps with ASP.NET Core</a>.</p>
 </div>

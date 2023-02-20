@@ -19,7 +19,15 @@ namespace WebAppCmvc.Controllers
         {
             if (string.IsNullOrEmpty(HttpContext.Session.GetString("username"))) return RedirectToAction("Index", "Login");
 
-            List<Product> prodList = _db.Products.ToList();
+            List<Product> tmplist = Sidekick.ShuffleList(_db.Products.ToList());
+            List<Product> prodList = new();
+            int i = 0;
+            foreach(Product x in tmplist)
+            {
+                prodList.Add(x);
+                i++;
+                if (i > 15) break;
+            }
             return View(prodList);
         }
 

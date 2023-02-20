@@ -16,6 +16,7 @@ namespace WebAppCmvc
             //builder.Services.AddRazorPages();
 
             builder.Services.AddMemoryCache();
+            
             //builder.Services.AddSession();
             builder.Services.AddSession(options =>
             {

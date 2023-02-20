@@ -1,21 +1,24 @@
 ﻿@model WebAppCmvc.Models.User
 
 @{
-    ViewData["Title"] = "Login Index";
+    ViewData["Title"] = "SignUp";
 }
 
-<h1>Login</h1>
+<h1>SignUp</h1>
+
+<h4>User</h4>
 <hr />
 
 <div class="row">
     <div class="col-md-4">
 
-        <h5 class="text-danger">@ViewBag.LoginErrorMessage</h5><br />
+        <h5 class="text-danger">@ViewBag.SignupErrorMessage</h5>
+        <h5 class="text-success">@ViewBag.SignupSuccessMessage</h5><br />
 
-        <form asp-controller="Login" asp-action="Index" method="post">
+        <form asp-controller="Login" asp-action="SignUp" method="post">
 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
+
             <div class="form-group">
                 <label asp-for=Username class="control-label"></label>
                 <input asp-for=Username class="form-control" />
@@ -31,17 +34,16 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Login" name="login" class="btn btn-info" />
+                <input type="submit" value="Signup" name="signup" class="btn btn-info" />
             </div>
         </form>
 
     </div>
 </div>
 
-
 <br /><br />
 <h5>
-    Don't' have an account?
-    <a asp-action="SignUp" style="text-decoration: none;"> &nbsp;&nbsp; Sign Up</a>
+    Already have an account?
+    <a asp-action="Index" style="text-decoration: none;"> &nbsp;&nbsp; Log In</a>
 </h5>
 

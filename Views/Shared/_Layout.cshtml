@@ -1,4 +1,4 @@
-﻿@inject IHttpContextAccessor Accessor
+﻿@*@inject IHttpContextAccessor Accessor*@
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +16,7 @@
     <body>
         <header>
     
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
                 <div class="container-fluid">
                     <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebAppCmvc</a>
                    @*<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,7 +42,8 @@
                             <input class="form-control me-sm-2" type="search" placeholder="Search">
                             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
                         </form>*@
-                    <a class="nav-link" asp-area="" asp-controller="Login" asp-action="Logout">@Accessor.HttpContext.Session.GetString("username") &nbsp; :: &nbsp; Log Out</a>
+                    @Accessor.HttpContext.Session.GetString("username") &nbsp;
+                    <a class="nav-link" asp-area="" asp-controller="Login" asp-action="Logout"> :: &nbsp; Log Out</a>
                     </div>
                 </div>
             </nav>
@@ -91,7 +92,7 @@
             <br />
         }
     
-        <footer class="footer text-muted bg-dark text-center" style="position: absolute; bottom: 0; width: 100%; height: 3%; margin: auto;">
+        <footer class="footer text-muted bg-dark text-center clearfix" style="position:absolute; width:100%;" >
             <div class="container py-4">
                 <img height="30px" src="~/m-logo.png" width="65px" />
                 <br />

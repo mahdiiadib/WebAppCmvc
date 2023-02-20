@@ -24,7 +24,7 @@ namespace WebAppCmvc.Controllers
         {
             if(ModelState.IsValid)
             {
-                var credential = _db.Users.Where(x => x.Username == u.Username && x.Password == u.Password).FirstOrDefault();
+                User credential = _db.Users.Where(x => x.Username == u.Username && x.Password == u.Password).FirstOrDefault();
                 if(credential == null)
                 {
                     ViewBag.LoginErrorMessage = "*Login failed";
@@ -44,6 +44,31 @@ namespace WebAppCmvc.Controllers
         {
             HttpContext.Session.Clear();
             return RedirectToAction("Index", "Login");
+        }
+
+        public IActionResult SignUp()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SignUp(User u)
+        {
+            if (ModelState.IsValid)
+            {
+                User credential = _db.Users.Where(x => x.Username == u.Username).FirstOrDefault();
+                if (credential == null)
+                {
+                    _db.Users.Add(u);
+                    _db.SaveChanges();
+                    ViewBag.SignupSuccessMessage = $"Registered user {u.Username} successfully.";
+                }
+                else
+                {
+                    ViewBag.SignupErrorMessage = $"Username {u.Username} is already taken. Try a different name.";
+                }
+            }
+            return View(u);
         }
     }
 }

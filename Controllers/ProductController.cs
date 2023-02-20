@@ -26,7 +26,7 @@ namespace WebAppCmvc.Controllers
             {
                 prodList.Add(x);
                 i++;
-                if (i > 15) break;
+                if (i == 15) break;
             }
             return View(prodList);
         }

@@ -1,0 +1,52 @@
+﻿@model WebAppCmvc.Models.Product
+
+@{
+    ViewData["Title"] = "Product Details";
+    ViewData["FakePrice"] = Model.Price + 6000;
+}
+
+<section class="py-5">
+    <h1>Product Details</h1>
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+
+            <div class="col-md-6">
+                <img class="card-img-top mb-5 mb-md-0" src="@Model.ImagePath" alt="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" onerror="imgError(this)" />
+            </div>
+
+            <div class="col-md-6">
+                <div class="small mb-1">Product ID: &nbsp; @Model.Id</div>
+                <div class="small mb-1">@Model.Type</div>
+                &nbsp;
+                <h1 class="display-5 fw-bolder">@Model.Name</h1>
+                <div class="fs-5 mb-5">
+                    <span class="text-decoration-line-through">TK @ViewData["FakePrice"]</span>
+                    &nbsp;
+                    <span>TK @Model.Price</span>
+                </div>
+                <p class="lead">@Model.Description</p>
+                &nbsp;
+                <div class="d-flex">
+                    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning"><i class="bi bi-pencil"></i> &nbsp; Edit</a>
+                    &nbsp;
+                    <a asp-action="Delete" asp-route-id="@Model?.Id" class="btn btn-danger"><i class="bi bi-trash3"></i> &nbsp; Delete</a>
+                    &nbsp;
+                    <a asp-action="Index" class="btn btn-primary"><i class="bi bi-arrow-return-left"></i> &nbsp; Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    function imgError(me)
+    {
+       // place here the alternative image
+        var AlterNativeImg = "https://dummyimage.com/600x700/dee2e6/6c757d.jpg";
+    
+       // to avoid the case that even the alternative fails      
+       if(AlterNativeImg != me.src) me.src = AlterNativeImg;
+    }
+</script>
+  

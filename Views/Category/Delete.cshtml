@@ -1,0 +1,33 @@
+﻿@model Category
+
+@{
+    ViewData["Title"] = "Category Delete";
+}
+
+@*@if (TempData["failure"] != null)
+{
+    <h4 class="text-danger">@TempData["failure"]</h4>
+}*@
+
+<form method="post" asp-action="DeletePOST">
+
+    <input asp-for="Id" hidden/>
+    <input asp-for="Name" hidden/>
+
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Delete Category</h2>
+            <hr />
+        </div>
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" disabled class="input-group-text"/>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-danger" style="width:150px"><i class="bi bi-trash3"></i> &nbsp; Delete</button>
+        <a asp-controller="Category" asp-action="Index" class="btn btn-primary" style="width:150px"><i class="bi bi-arrow-return-left"></i> &nbsp; Back to Index</a>
+    </div>
+</form>

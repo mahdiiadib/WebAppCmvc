@@ -1,0 +1,104 @@
+﻿@*@model List<Product>*@
+@model ProdListCatg
+
+@{
+    ViewData["Title"] = "Product Search";
+}
+
+
+@using(Html.BeginForm("Search", "product", FormMethod.Get))
+{
+    <div class="container p-3 d-flex">
+        @Html.DropDownList("searchType", Model.catgs, "---- Any ----", new{@class="btn btn-secondary dropdown-toggle text-center", @style="font-weight: bold;"})
+        &nbsp; &nbsp; &nbsp; &nbsp;
+        @Html.TextBox("searchTerm", null, new { @class="form-control me-sm-2", @placeholder="Search"})
+        <button type="submit" class="btn btn-info"><i class="bi bi-search"></i></button>
+    </div>
+    <br>
+    <div style="float: right;">
+        <div class="container p-3 d-flex">
+            <b>Price range:</b> &nbsp; &nbsp;
+            @Html.TextBox("minPrice", null, new { @class="input-group-text", @placeholder="min price", @type="number", @min=0, @style="height: 30px; width: 120px;"})
+            &nbsp; &nbsp;
+            @Html.TextBox("maxPrice", null, new { @class="input-group-text", @placeholder="max price", @type="number", @min=0, @style="height: 30px; width: 120px;"})
+
+        </div>
+        <div class="container p-3 d-flex">
+            <b>Sort Descending:</b> &nbsp; &nbsp;
+            @Html.CheckBox("sortDesc", false, new { @class="input-group-text"})
+        </div>
+        <div class="container p-3 d-flex">
+            <b>Sort by:</b> &nbsp; &nbsp;
+            PID &nbsp; @Html.RadioButton("sortBys", "Pid", true, new { @class="input-group-text"}) &nbsp; &nbsp; &nbsp; &nbsp;
+            Name &nbsp; @Html.RadioButton("sortBys", "Name", false, new { @class="input-group-text"}) &nbsp; &nbsp; &nbsp; &nbsp;
+            Price &nbsp; @Html.RadioButton("sortBys", "Price", false, new { @class="input-group-text"}) &nbsp; &nbsp; &nbsp; &nbsp;
+        </div>
+    </div>
+}
+
+
+
+<br />
+<label class="container " style="color: aliceblue"><i>@Model.prods.Count result(s) found.</i></label>
+<br />
+
+
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            
+            @foreach (Product x in Model.prods)
+            {
+                ViewData["FakePrice"] = x.Price + 6000;
+
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Sale badge-->
+                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                        
+                        <!-- Product image-->
+                        <img class="card-img-top" src="@x.ImagePath" alt="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" onerror="imgError(this)" />
+                        
+                        <!-- Product type-->
+                        <div class="text-center">@x.Type</div>
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">@x.Name</h5>
+                                <!-- Product price-->
+                                <span class="text-muted text-decoration-line-through">TK @ViewData["FakePrice"]</span>
+                                &nbsp;
+                                TK @x.Price
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center">
+                            <a asp-controller="product" asp-action="Details" asp-route-id="@x.Id" class="btn btn-outline-success"><i class="bi bi-eye"></i> </a>
+                            &nbsp;
+                            <a asp-controller="product" asp-action="Edit" asp-route-id="@x.Id" class="btn btn-outline-warning"><i class="bi bi-pencil"></i> </a>
+                            &nbsp;
+                            <a asp-controller="product" asp-action="Delete" asp-route-id="@x.Id" class="btn btn-outline-danger"><i class="bi bi-trash3"></i> </a>
+                            &nbsp;
+                        </div>
+                    </div>
+                </div>
+            }
+            
+        </div>
+    </div>
+</section>
+
+
+
+    <script>
+        function imgError(me)
+        {
+           // place here the alternative image
+            var AlterNativeImg = "https://dummyimage.com/600x700/dee2e6/6c757d.jpg";
+        
+           // to avoid the case that even the alternative fails      
+           if(AlterNativeImg != me.src) me.src = AlterNativeImg;
+        }
+    </script>

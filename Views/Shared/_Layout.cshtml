@@ -1,0 +1,108 @@
+﻿@inject IHttpContextAccessor Accessor
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - WebAppCmvc</title>
+        <link rel="icon" type="images/x-icon" href="~/m-logo.png" />
+        @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+        <link rel="stylesheet" href="~/css/bootswatchTheme.css" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        @*<link rel="stylesheet" href="~/WebAppCmvc.styles.css" asp-append-version="true" />*@
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    </head>
+    <body>
+        <header>
+    
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <div class="container-fluid">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebAppCmvc</a>
+                   @*<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>*@
+                    <div class="collapse navbar-collapse" id="navbarColor01">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                                <div class="dropdown-menu">
+                                    <a class="nav-link dropdown-item" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
+                                    <a class="nav-link dropdown-item" asp-area="" asp-controller="Product" asp-action="Index">Product</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="nav-link dropdown-item" asp-area="" asp-controller="Home" asp-action="About">About Us</a>
+                                </div>
+                            </li>
+                            &nbsp; &nbsp;
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Product" asp-action="Search"><i class="bi bi-search"></i></a>
+                            </li>
+                        </ul>
+                        @*<form class="d-flex">
+                            <input class="form-control me-sm-2" type="search" placeholder="Search">
+                            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                        </form>*@
+                    <a class="nav-link" asp-area="" asp-controller="Login" asp-action="Logout">@Accessor.HttpContext.Session.GetString("username") &nbsp; :: &nbsp; Log Out</a>
+                    </div>
+                </div>
+            </nav>
+    
+            @*<img src="~/pcbs2.png" class="container-fluid" style="opacity: 75%;" />*@
+
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="4000" >
+                      <img src="~/pcbs21920x688.png" class="d-block w-100" alt="..." style="opacity: 80%;" >
+                    </div>
+                    <div class="carousel-item" data-bs-interval="3500" >
+                      <img src="~/AIOOptixG24Coverview1920x688.png" class="d-block w-100" alt="..." style="opacity: 80%;" >
+                    </div>
+                    <div class="carousel-item" data-bs-interval="3500" >
+                      <img src="~/bestmultimonitorvideocard1920x688.jpg" class="d-block w-100" alt="..." style="opacity: 80%;" >
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+    
+            <br /><br />
+    
+        </header>
+    
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        @for(int i=0; i<20; i++)
+        {
+            <br />
+        }
+    
+        <footer class="footer text-muted bg-dark text-center" style="position: absolute; bottom: 0; width: 100%; height: 3%; margin: auto;">
+            <div class="container py-4">
+                <img height="30px" src="~/m-logo.png" width="65px" />
+                <br />
+                &copy; @DateTime.Now.ToString("dddd, dd MMMM yyyy") - WebAppCmvc
+            </div>
+        </footer>
+    
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+    </body>
+</html>

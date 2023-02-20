@@ -1,0 +1,37 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = "Product Delete";
+}
+
+<form method="post" asp-action="DeletePOST">
+
+    <input asp-for="Id" hidden/>
+
+    <div class="p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Delete Product</h2>
+            <hr />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="input-group-text" style="text-align: left; width: 30%;" disabled />
+            <br />
+            <label asp-for="Type"></label> <br>
+            <input asp-for="Type" class="input-group-text" disabled />
+            <br />
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="input-group-text" style="width: 50%; height: 200px; text-align: left;" disabled></textarea>
+            <br />
+            <label asp-for="ImagePath"></label><br />
+            <input asp-for="ImagePath" class="input-group-text" style="width: 60%; text-align: left;" disabled />
+            <br />
+            <label asp-for="Price"></label><br />
+            <input type="number" min="0" max="@int.MaxValue" asp-for="Price" class="input-group-text" style="width: 20%;" disabled />
+            <br />
+        </div>
+        <button type="submit" class="btn btn-danger" style="width:150px"><i class="bi bi-trash3"></i> &nbsp; Delete</button>
+        <a asp-controller="Product" asp-action="Index" class="btn btn-primary" style="width:150px"><i class="bi bi-arrow-return-left"></i> &nbsp; Back to Index</a>
+    </div>
+</form>

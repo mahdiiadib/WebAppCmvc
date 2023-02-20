@@ -24,7 +24,8 @@ namespace WebAppCmvc.Controllers
         {
             if(ModelState.IsValid)
             {
-                User credential = _db.Users.Where(x => x.Username == u.Username && x.Password == u.Password).FirstOrDefault();
+                User credential = _db.Users.Where(x => x.Username == u.Username && x.Password == Sidekick.Crypt(u.Password)).FirstOrDefault();
+                //User credential = _db.Users.Where(x => x.Username == u.Username && x.Password == u.Password).FirstOrDefault();
                 if(credential == null)
                 {
                     ViewBag.LoginErrorMessage = "*Login failed";
@@ -59,6 +60,7 @@ namespace WebAppCmvc.Controllers
                 User credential = _db.Users.Where(x => x.Username == u.Username).FirstOrDefault();
                 if (credential == null)
                 {
+                    u.Password = Sidekick.Crypt(u.Password);
                     _db.Users.Add(u);
                     _db.SaveChanges();
                     ViewBag.SignupSuccessMessage = $"Registered user {u.Username} successfully.";

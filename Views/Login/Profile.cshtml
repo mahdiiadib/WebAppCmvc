@@ -47,7 +47,7 @@ UserState = { @ViewData["UserState"] }*@
                     <div class="row mt-3">
                         <div class="col-md-12">
                             <label asp-for="Password" class="control-label"></label>
-                            <input id="pw_user" type="password" asp-for="Password" value="@Sidekick.Decrypt(Model.Password)" class="form-control" placeholder="Password" />
+                            <input id="pw_user" type="password" asp-for="Password" class="form-control" placeholder="Password" />
                             <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
                     </div>

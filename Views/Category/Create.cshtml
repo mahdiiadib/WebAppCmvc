@@ -15,10 +15,12 @@
 
         <div class="mb-3">
             <label asp-for="Name"></label>
-            <input asp-for="Name" class="input-group-text" style="text-align: left;" />
+            <input id="cname" asp-for="Name" class="input-group-text" style="text-align: left;" />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
-        <button type="submit" class="btn btn-info" style="width:150px"><i class="bi bi-plus-square"></i> &nbsp; Create</button>
+        <button type="submit" class="btn btn-info" style="width:150px" onclick="return confirm('Are you sure you want to create a new category named ' + document.getElementById('cname').value + '?')">
+            <i class="bi bi-plus-square"></i> &nbsp; Create
+        </button>
         <a asp-controller="Category" asp-action="Index" class="btn btn-secondary" style="width:200px"><i class="bi bi-arrow-return-left"></i> &nbsp; Back to Index</a>
     </div>
 </form>

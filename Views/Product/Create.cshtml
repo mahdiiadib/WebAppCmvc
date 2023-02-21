@@ -16,7 +16,7 @@
 
         <div class="mb-3">
             <label asp-for="@Model.prod.Name"></label>
-            <input asp-for="@Model.prod.Name" class="input-group-text" style="text-align: left; width: 30%;" />
+            <input id="pname" asp-for="@Model.prod.Name" class="input-group-text" style="text-align: left; width: 30%;" />
             <span asp-validation-for="@Model.prod.Name" class="text-danger"></span>
             <br /><br />
             <label asp-for="@Model.prod.Description"></label>
@@ -36,7 +36,9 @@
             <br /><br />
 
         </div>
-        <button type="submit" class="btn btn-info" style="width:150px"><i class="bi bi-plus-square"></i> &nbsp; Add</button>
+        <button type="submit" class="btn btn-info" style="width:150px" onclick="return confirm('Are you sure you want to add ' + document.getElementById('pname').value + '?')">
+            <i class="bi bi-plus-square"></i> &nbsp; Add
+        </button>
         <a asp-controller="Product" asp-action="Index" class="btn btn-secondary" style="width:200px"><i class="bi bi-arrow-return-left"></i> &nbsp; Back to Index</a>
     </div>
 </form>

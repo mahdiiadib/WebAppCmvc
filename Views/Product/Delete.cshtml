@@ -31,7 +31,9 @@
             <input type="number" min="0" max="@int.MaxValue" asp-for="Price" class="input-group-text" style="width: 20%;" disabled />
             <br />
         </div>
-        <button type="submit" class="btn btn-danger" style="width:150px"><i class="bi bi-trash3"></i> &nbsp; Delete</button>
-        <a asp-controller="Product" asp-action="Index" class="btn btn-primary" style="width:150px"><i class="bi bi-arrow-return-left"></i> &nbsp; Back to Index</a>
+        <button type="submit" class="btn btn-danger" style="width:150px" onclick="return confirm('Are you sure you want to delete ' + '@Model.Name' + '?')">
+            <i class="bi bi-trash3"></i> &nbsp; Delete
+        </button>
+        <a asp-controller="Product" asp-action="Index" class="btn btn-primary" style="width:200px"><i class="bi bi-arrow-return-left"></i> &nbsp; Back to Index</a>
     </div>
 </form>

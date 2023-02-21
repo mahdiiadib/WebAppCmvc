@@ -27,7 +27,9 @@
             <input asp-for="Name" disabled class="input-group-text"/>
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
-        <button type="submit" class="btn btn-danger" style="width:150px"><i class="bi bi-trash3"></i> &nbsp; Delete</button>
-        <a asp-controller="Category" asp-action="Index" class="btn btn-primary" style="width:150px"><i class="bi bi-arrow-return-left"></i> &nbsp; Back to Index</a>
+        <button type="submit" class="btn btn-danger" style="width:150px" onclick="return confirm('Are you sure you want to delete ' + '@Model.Name' + '?')">
+            <i class="bi bi-trash3"></i> &nbsp; Delete
+        </button>
+        <a asp-controller="Category" asp-action="Index" class="btn btn-primary" style="width:200px"><i class="bi bi-arrow-return-left"></i> &nbsp; Back to Index</a>
     </div>
 </form>

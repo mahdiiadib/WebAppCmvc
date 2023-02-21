@@ -1,0 +1,75 @@
+﻿@model WebAppCmvc.Models.User
+
+@{
+    ViewData["Title"] = $"Profile-{Model.Username}";
+}
+
+<h1>Profile</h1>
+<hr />
+
+
+@*FUserState = { @ViewData["FUserState"] }
+<br />
+UserState = { @ViewData["UserState"] }*@
+
+
+<div class="container rounded mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <img src="~/default_avatar.png">
+                <h3 style="color: ghostwhite; font-family: 'Cascadia Mono';">@Model.Username.ToUpper()</h3>
+            </div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4>Profile Settings</h4>
+                    @*<small style="color:lightgray; font-family: Consolas;">ID: #@Model.Id</small>*@
+                    <div class="text-success">@ViewData["ProfileSaved"]</div>
+                    <div class="text-danger">@ViewData["ProfileError"]</div>
+                </div>
+
+                <form asp-controller="Login" asp-action="Profile" method="post">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="number" asp-for="Id" value="@Model.Id" hidden />
+
+                    <div class="row mt-3">
+                        <div class="">
+                            <label asp-for="Username" class="control-label"></label>
+                            <input asp-for="Username" value="@Model.Username" class="form-control" placeholder="Name" hidden />
+                            <input asp-for="Username" value="@Model.Username" class="form-control" placeholder="Name" disabled />
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <label asp-for="Password" class="control-label"></label>
+                            <input id="pw_user" type="password" asp-for="Password" value="@Sidekick.Decrypt(Model.Password)" class="form-control" placeholder="Password" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-info" onclick="return confirm('Are you sure you want to edit password to ' + document.getElementById('pw_user').value)">
+                                <i class="fas fa-save"></i> &nbsp; Save
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button asp-controller="Home" asp-action="Index" class="btn btn-primary" type="submit" style="float: right;">
+                                <i class="bi bi-arrow-return-left"></i> &nbsp; Back
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+

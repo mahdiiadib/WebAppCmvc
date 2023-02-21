@@ -1,10 +1,8 @@
 ﻿@model Category
 
 @{
-    ViewData["Title"] = "Edit Product";
+    ViewData["Title"] = "Edit Category";
 }
-
-<h1>Edit Product</h1>
 
 <form method="post" asp-action="Edit">
     <div class="border p-3 mt-4">
@@ -20,7 +18,9 @@
             <input asp-for="Name" class="input-group-text" style="text-align: left;" />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
-        <button type="submit" class="btn btn-warning" style="width:150px"><i class="bi bi-pencil"></i> &nbsp; Update</button>
-        <a asp-controller="Category" asp-action="Index" class="btn btn-primary" style="width:150px"><i class="bi bi-arrow-return-left"></i> &nbsp; Back to Index</a>
+        <button type="submit" class="btn btn-warning" style="width:150px" onclick="return confirm('Are you sure you want to update ' + '@Model.Name' + '?')">
+            <i class="bi bi-pencil"></i> &nbsp; Update
+        </button>
+        <a asp-controller="Category" asp-action="Index" class="btn btn-primary" style="width:200px"><i class="bi bi-arrow-return-left"></i> &nbsp; Back to Index</a>
     </div>
 </form>

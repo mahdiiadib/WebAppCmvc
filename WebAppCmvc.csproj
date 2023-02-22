@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <None Remove="pcbs2.png" />
+    <None Remove="WebAppCmvcDB.mdf" />
+    <None Remove="WebAppCmvcDB_log.ldf" />
   </ItemGroup>
 
   <ItemGroup>

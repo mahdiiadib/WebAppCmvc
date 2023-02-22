@@ -22,7 +22,7 @@ namespace WebAppCmvc
             //builder.Services.AddSession();
             builder.Services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromMinutes(10);
+                options.IdleTimeout = TimeSpan.FromMinutes(11);
             });
 
             builder.Services.AddMvc();

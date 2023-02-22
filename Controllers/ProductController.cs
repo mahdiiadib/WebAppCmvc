@@ -198,9 +198,9 @@ namespace WebAppCmvc.Controllers
             {
                 if (string.IsNullOrEmpty(searchType))
                 {
-                    if (sortBys == "Name") plc.prods = _db.Products.Where(x => x.Name.Contains(searchTerm) || x.Type.ToLower() == searchTerm.ToLower() && x.Price >= minPrice && x.Price <= maxPrice).OrderBy(x => x.Name).ToList();
-                    else if (sortBys == "Price") plc.prods = _db.Products.Where(x => x.Name.Contains(searchTerm) || x.Type.ToLower() == searchTerm.ToLower() && x.Price >= minPrice && x.Price <= maxPrice).OrderBy(x => x.Price).ToList();
-                    else plc.prods = _db.Products.Where(x => x.Name.Contains(searchTerm) || x.Type.ToLower() == searchTerm.ToLower() && x.Price >= minPrice && x.Price <= maxPrice).ToList();
+                    if (sortBys == "Name") plc.prods = _db.Products.Where(x => (x.Name.Contains(searchTerm) || x.Type.ToLower() == searchTerm.ToLower()) && x.Price >= minPrice && x.Price <= maxPrice).OrderBy(x => x.Name).ToList();
+                    else if (sortBys == "Price") plc.prods = _db.Products.Where(x => (x.Name.Contains(searchTerm) || x.Type.ToLower() == searchTerm.ToLower()) && x.Price >= minPrice && x.Price <= maxPrice).OrderBy(x => x.Price).ToList();
+                    else plc.prods = _db.Products.Where(x => (x.Name.Contains(searchTerm) || x.Type.ToLower() == searchTerm.ToLower()) && x.Price >= minPrice && x.Price <= maxPrice).ToList();
                 }
                 else
                 {
@@ -217,3 +217,4 @@ namespace WebAppCmvc.Controllers
         }
     }
 }
+
